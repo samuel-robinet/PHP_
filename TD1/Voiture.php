@@ -29,7 +29,9 @@ class Voiture {
   }
 
   public function setImmatriculation($immatriculation2) {
-       $this->immatriculation = $immatriculation2;
+       if(strlen($immatriculation2)==8){
+        $this->immatriculation = $immatriculation2;
+        }
   }
       
   // un constructeur
@@ -42,7 +44,9 @@ class Voiture {
   // une methode d'affichage.
   public function afficher() {
       echo $this->marque;
+      echo "<br>";
       echo $this->couleur;
+      echo "<br>";
       echo $this->immatriculation;
 
   }
