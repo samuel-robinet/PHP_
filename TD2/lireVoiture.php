@@ -12,10 +12,27 @@ while($tab_obj = $rep->fetch()){
 
 $rep->setFetchMode(PDO::FETCH_CLASS, 'voiture');
 //$tab_voit = $rep->fetchAll();
-while($tab_voit = $rep->fetchAll()){
+while($tab_voit = $rep->fetch()){
 	$tab_voit->afficher();
 }
 
+/*
+while ($donnees = $reponse->fetch()
+{
+   // Ton traitement
+}
+équivaut à 
 
+1
+2
+3
+4
+5
+$donnees = $reponse->fetchAll();
+foreach($donnees as $uneLigne)
+{
+    // Ton traitement
+}
+*/
 
 ?>
