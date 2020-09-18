@@ -50,14 +50,23 @@ class Voiture {
     $this->marque = $m;
     $this->couleur = $c;
     $this->immatriculation = $i;
+    }
   }
-}
 
-  public static function getAllVoitures() {
-     $sql = "SELECT * from voiture";
-     $rep = Model::$pdo->query($sql);
-     $rep->setFetchMode(PDO::FETCH_CLASS, 'Voiture');
-     return $rep->fetchAll();             
+  public static function getAllVoitures() { 
+      try {
+       $sql = "SELECT * from voiture";
+      } catch (PDOException $e) {
+        if (Conf::getDebug()) {
+          echo $e->getMessage(); // affiche un message d'erreur
+        } else {
+          echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';}
+        die();
+        }
+
+      $rep = Model::$pdo->query($sql);
+      $rep->setFetchMode(PDO::FETCH_CLASS, 'Voiture');
+      return $rep->fetchAll(); 
   }
 
   // une methode d'affichage.
