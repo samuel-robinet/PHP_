@@ -78,7 +78,7 @@ class Voiture {
         "nom_tag" => $immat,
         //nomdutag => valeur, ...
         );
-    
+
     // On donne les valeurs et on exécute la requête   
     $req_prep->execute($values);
 
@@ -89,7 +89,24 @@ class Voiture {
     if (empty($tab_voit))
         return false;
     return $tab_voit[0];
-}
+  }
+
+   public static function save($immatriculation,$marque,$couleur){
+            try {
+                $sql = Model::$pdo->prepare("INSERT INTO voiture (immatriculation,marque,couleur) VALUES (:immatriculation,:marque,:couleur)");
+
+            } catch (PDOException $e) {
+                echo $e->getMessage(); // affiche un message d'erreur
+                die();
+            }
+            $sql->execute(array('immatriculation' => $immatriculation,
+            'marque' => $marque,
+            'couleur' => $couleur));
+          
+  }
+
+
+
 
   // une methode d'affichage.
   public function afficher() {
@@ -101,5 +118,6 @@ class Voiture {
 
   }
 }
+
 ?>
 
