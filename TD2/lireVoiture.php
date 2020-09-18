@@ -14,8 +14,21 @@ $rep->setFetchMode(PDO::FETCH_CLASS, 'voiture');
 //$tab_voit = $rep->fetchAll();
 while($tab_voit = $rep->fetch()){
 	$tab_voit->afficher();
+	echo '<br>';
+	echo '<br>';
+
 }
 
+echo '<br>';
+echo '<br>';
+
+$donnees = voiture::getAllVoitures();
+foreach($donnees as $uneLigne){
+    $uneLigne->afficher();
+    echo '<br>';
+	echo '<br>';
+
+}
 /*
 while ($donnees = $reponse->fetch()
 {

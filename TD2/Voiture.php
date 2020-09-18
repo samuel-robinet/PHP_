@@ -52,7 +52,14 @@ class Voiture {
     $this->immatriculation = $i;
   }
 }
-           
+
+  public static function getAllVoitures() {
+     $sql = "SELECT * from voiture";
+     $rep = Model::$pdo->query($sql);
+     $rep->setFetchMode(PDO::FETCH_CLASS, 'Voiture');
+     return $rep->fetchAll();             
+  }
+
   // une methode d'affichage.
   public function afficher() {
       echo $this->marque;
