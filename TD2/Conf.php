@@ -5,7 +5,7 @@ class Conf {
     // Le nom d'hote est webinfo a l'IUT
     // ou localhost sur votre machine
     //http://webinfo.iutmontp.univ-montp2.fr
-    'hostname' => 'http://webinfo.iutmontp.univ-montp2.fr',
+    'hostname' => 'webinfo.iutmontp.univ-montp2.fr',
     // A l'IUT, vous avez une BDD nommee comme votre login
     // Sur votre machine, vous devrez creer une BDD
     'database' => 'robinets',
