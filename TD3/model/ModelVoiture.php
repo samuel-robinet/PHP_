@@ -1,5 +1,6 @@
 <?php
-class Voiture {
+require_once "Model.php";
+class ModelVoiture {
    
   private $marque;
   private $couleur;
@@ -65,7 +66,7 @@ class Voiture {
         }
 
       $rep = Model::$pdo->query($sql);
-      $rep->setFetchMode(PDO::FETCH_CLASS, 'Voiture');
+      $rep->setFetchMode(PDO::FETCH_CLASS, 'ModelVoiture');
       return $rep->fetchAll(); 
   }
 
@@ -83,7 +84,7 @@ class Voiture {
     $req_prep->execute($values);
 
     // On récupère les résultats comme précédemment
-    $req_prep->setFetchMode(PDO::FETCH_CLASS, 'Voiture');
+    $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelVoiture');
     $tab_voit = $req_prep->fetchAll();
     // Attention, si il n'y a pas de résultats, on renvoie false
     if (empty($tab_voit))
