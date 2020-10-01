@@ -83,7 +83,7 @@ class ModelVoiture {
     // On donne les valeurs et on exécute la requête   
     $req_prep->execute($values);
 
-    // On récupère les résultats comme précédemment
+    // On récupère les résultats comme précédemmerequire_once "Model.php";require_once "Model.php";nt
     $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelVoiture');
     $tab_voit = $req_prep->fetchAll();
     // Attention, si il n'y a pas de résultats, on renvoie false
@@ -108,7 +108,7 @@ class ModelVoiture {
 
 
 
-
+/*
   // une methode d'affichage.
   public function afficher() {
       echo $this->marque;
@@ -117,7 +117,7 @@ class ModelVoiture {
       echo "<br>";
       echo $this->immatriculation;
 
-  }
+  }*/
 }
 
 ?>
