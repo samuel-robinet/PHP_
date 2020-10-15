@@ -2,10 +2,9 @@
 require_once "Model.php";
 class ModelVoiture {
    
-
-  private $immatriculation;
   private $marque;
   private $couleur;
+  private $immatriculation;
       
   // un getter      
   public function getMarque() {
@@ -104,11 +103,10 @@ class ModelVoiture {
                 "marque" => $this->marque,
                 "couleur" => $this->couleur,
             );
-           
             // On donne les valeurs et on exécute la requête   
             $req_prep->execute($values);
     
-
+  
         } catch (PDOException $e) {
             if (Conf::getDebug()) {
                 echo $e->getMessage(); // affiche un message d'erreur

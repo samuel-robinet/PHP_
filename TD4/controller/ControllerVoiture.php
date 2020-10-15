@@ -5,7 +5,7 @@ require_once ('../model/ModelVoiture.php'); // chargement du modèle
 $tab_v = ModelVoiture::getAllVoitures();     //appel au modèle pour gerer la BD
 require ('../view/voiture/list.php');  //redirige vers la vue */
 
-require_once ('../model/ModelVoiture.php'); // chargement du modèle
+require_once build_path(array("model","ModelVoiture.php")); // chargement du modèle
 //require_once ('../view/voiture/create.php'); // chargement du modèle
 class ControllerVoiture {
     public static function readAll() {
@@ -32,19 +32,19 @@ class ControllerVoiture {
     public static function created(){
         if(isset($_POST['immatriculation'])){
             $immatriculation=$_POST['immatriculation'];
-            
+            echo $immatriculation;
         }
 
         if(isset($_POST['marque'])){
             $marque=$_POST['marque'];
-         
+            echo $marque;
         }
         if(isset($_POST['couleur'])){
             $couleur=$_POST['couleur'];
-            
+            echo $couleur;
         }
 
-        $voiture1 = new ModelVoiture($marque,$couleur,$immatriculation);
+        $voiture1 = new ModelVoiture($immatriculation,$marque,$couleur);
         $voiture1->save();
         self::readAll();
     }
