@@ -1,6 +1,8 @@
 <?php
 
-require_once 'File.php';
+require_once "../file/File.php";
+//require_once "ControllerVoiture.php";
+require_once File::build_path(array("controller","ControllerVoiture.php"));
 //ControllerVoiture::readAll(); // Appel de la méthode statique $action de ControllerVoiture
 
 
