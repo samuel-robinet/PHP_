@@ -1,6 +1,6 @@
 <?php
 require_once "Model.php";
-require_once "Voiture.php";
+require_once "ModelVoiture.php";
 
 $rep = Model::$pdo->query("SELECT * FROM voiture"); 
 /*

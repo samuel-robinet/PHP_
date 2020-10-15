@@ -1,5 +1,6 @@
 <?php
 require_once 'ControllerVoiture.php';
+//require_once 'File.php';
 //ControllerVoiture::readAll(); // Appel de la méthode statique $action de ControllerVoiture
 
 

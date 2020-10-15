@@ -92,19 +92,30 @@ class ModelVoiture {
     return $tab_voit[0];
   }
 
-   public static function save($immatriculation,$marque,$couleur){
-            try {
-                $sql = Model::$pdo->prepare("INSERT INTO voiture (immatriculation,marque,couleur) VALUES (:immatriculation,:marque,:couleur)");
+   public function save() {
+        try {
+            $sql = "INSERT INTO voiture (immatriculation, marque, couleur) VALUES (:immat, :marque, :couleur)";
+            // Préparation de la requête
+            $req_prep = Model::$pdo->prepare($sql);
 
-            } catch (PDOException $e) {
+            $values = array(
+                "immat" => $this->immatriculation,
+                "marque" => $this->marque,
+                "couleur" => $this->couleur,
+            );
+            // On donne les valeurs et on exécute la requête   
+            $req_prep->execute($values);
+    
+  
+        } catch (PDOException $e) {
+            if (Conf::getDebug()) {
                 echo $e->getMessage(); // affiche un message d'erreur
-                die();
+            } else {
+                echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
             }
-            $sql->execute(array('immatriculation' => $immatriculation,
-            'marque' => $marque,
-            'couleur' => $couleur));
-          
-  }
+            die();
+        }
+    }
 
 
 
