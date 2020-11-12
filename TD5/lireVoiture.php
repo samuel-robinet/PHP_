@@ -33,7 +33,7 @@ foreach($donnees as $uneLigne){
 $donnees = voiture::getVoitureByImmat('08787975');
 $donnees->afficher();
 
-//Voiture::Save('78896845','CPGO','gris');
+Voiture::Save('78896845','CPGO','gris');
 /*
 while ($donnees = $reponse->fetch()
 {

@@ -1,5 +1,6 @@
 <?php
-class Voiture {
+require_once "Model.php";
+class ModelVoiture {
    
   private $marque;
   private $couleur;
@@ -65,7 +66,7 @@ class Voiture {
         }
 
       $rep = Model::$pdo->query($sql);
-      $rep->setFetchMode(PDO::FETCH_CLASS, 'Voiture');
+      $rep->setFetchMode(PDO::FETCH_CLASS, 'ModelVoiture');
       return $rep->fetchAll(); 
   }
 
@@ -82,8 +83,8 @@ class Voiture {
     // On donne les valeurs et on exécute la requête   
     $req_prep->execute($values);
 
-    // On récupère les résultats comme précédemment
-    $req_prep->setFetchMode(PDO::FETCH_CLASS, 'Voiture');
+    // On récupère les résultats comme précédemmerequire_once "Model.php";require_once "Model.php";nt
+    $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelVoiture');
     $tab_voit = $req_prep->fetchAll();
     // Attention, si il n'y a pas de résultats, on renvoie false
     if (empty($tab_voit))
@@ -91,23 +92,34 @@ class Voiture {
     return $tab_voit[0];
   }
 
-   public static function save($immatriculation,$marque,$couleur){
-            try {
-                $sql = Model::$pdo->prepare("INSERT INTO voiture (immatriculation,marque,couleur) VALUES (:immatriculation,:marque,:couleur)");
+   public function save() {
+        try {
+            $sql = "INSERT INTO voiture (immatriculation, marque, couleur) VALUES (:immat, :marque, :couleur)";
+            // Préparation de la requête
+            $req_prep = Model::$pdo->prepare($sql);
 
-            } catch (PDOException $e) {
+            $values = array(
+                "immat" => $this->immatriculation,
+                "marque" => $this->marque,
+                "couleur" => $this->couleur,
+            );
+            // On donne les valeurs et on exécute la requête   
+            $req_prep->execute($values);
+    
+  
+        } catch (PDOException $e) {
+            if (Conf::getDebug()) {
                 echo $e->getMessage(); // affiche un message d'erreur
-                die();
+            } else {
+                echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
             }
-            $sql->execute(array('immatriculation' => $immatriculation,
-            'marque' => $marque,
-            'couleur' => $couleur));
-          
-  }
+            die();
+        }
+    }
 
 
 
-
+/*
   // une methode d'affichage.
   public function afficher() {
       echo $this->marque;
@@ -116,7 +128,7 @@ class Voiture {
       echo "<br>";
       echo $this->immatriculation;
 
-  }
+  }*/
 }
 
 ?>
